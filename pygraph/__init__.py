@@ -4,22 +4,7 @@ Vertex = Tuple[str, object]
 Edge = Set[Vertex]
 
 def main():
-    potato = Graph()
-    potato.add_vertex(('A', 'Potato'))
-    potato.add_vertex(('B', 'Chicken'))
-    # print(potato.all_vertices())
-    # potato.remove_vertex(('A', 'Potato'))
-    # print(potato.all_vertices())
-    v1 = ('A', 'Potato')
-    v2 = ('B', 'Chicken')
-    v3 = ('C', 'Chocolate')
-    print(potato.add_edge((v1, v2)))
-    print(potato.add_edge((v1, v3)))
-
-    print(potato.adjacent(v1, v2))
-    print(potato.adjacent(v1, v3))
-
-    print(potato.neigbors(v1))
+    
 
 class Graph:
     def __init__(self):
@@ -41,10 +26,6 @@ class Graph:
         else:
             return None
 
-    # Gives all vertices
-    def all_vertices(self) -> [Vertex]:
-        return self.vertices
-
     def add_edge(self, e: Edge) -> Edge:
         for v in e:
             if not v in self.vertices:
@@ -60,19 +41,14 @@ class Graph:
         for e in self.edges:
             if x in e and y in e:
                 return True
-
         return False
 
     def neigbors(self, v: Vertex) -> [Vertex]:
-        # neighbor = []
         s=set()
-        # s.add(v)
         for e in self.edges:
             [v1, v2]=e
             if (self.adjacent(v1, v2)):
                 s.add(v1)
                 s.add(v2)
-
             s.remove(v)
-
         return list(s)
